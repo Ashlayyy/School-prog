@@ -1,0 +1,86 @@
+@use '../../abstracts/colors';
+
+.cookie {
+    width: 30rem;
+    background: map-get(colors.$cookie, "background");
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    position: relative;
+    overflow: hidden;
+    border: 1rem solid map-get(colors.$cookie, "spots");
+    box-shadow: 
+        inset 0 0 10rem 0 map-get(colors.$cookie, "spots"),
+        0 2rem 1.5rem 0 rgba(0, 0, 0, 0.2);
+    transition: 0.2s all;
+
+
+    &:hover {
+        cursor: pointer;
+    }    
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+
+    &--chocolate {
+        background: #3C2A21;
+    }
+
+    &--chocolate &__spots {
+        background: map-get(colors.$cookie, "chocoSpots");
+        border-radius: 30%;
+    }
+
+    &--redVelvet {
+        background: map-get(colors.$cookie, "red-velvet");
+    }
+
+    &--redVelvet &__spots {
+        background: map-get(colors.$cookie, "chocoSpots");
+        border-radius: 60%;
+    }
+
+    &__spots {
+        width: 5rem;
+        aspect-ratio: 1/1;
+        background: map-get(colors.$cookie, "spots");;
+        border-radius: 45%;
+        position: absolute;
+
+        &--first {
+            top: 10%;
+            left: 5%;
+        }
+
+        &--second {
+            right: 10%;
+            top: 0;
+        }
+
+        &--third {
+            right: 5%;
+            bottom: 10%;
+        }
+
+        &--fourth {
+            left: 5%;
+            bottom: 5%;
+        }
+
+        &--fifth {
+            left: 40%;
+            bottom: 15%;
+        }
+
+        &--sixt {
+            right: 15%;
+            bottom: 45%;
+        }
+
+        &--seventh {
+            left: 20%;
+            bottom: 40%;
+        }
+    }
+}

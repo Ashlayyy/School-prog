@@ -1,0 +1,14 @@
+//Base and reset
+@use './abstracts/reset';
+@use './base';
+
+//Components
+@use './components/header/header';
+@use './components/upgrades/upgrades';
+@use './components/save/save';
+@use './components/avatar/avatar';
+@use './components/score/score';
+@use './components/cookie/cookie';
+
+//Mediaqueries
+@use './abstracts/mediaqueries';

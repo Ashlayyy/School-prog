@@ -1,0 +1,65 @@
+@use '../../abstracts/colors';
+@use '../../abstracts/animations';
+@use "sass:math";
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  list-style: none;
+  background: white;
+  padding: 4rem;
+  max-width: 175rem;
+  position: relative;
+
+  &__color {
+    width: 25rem;
+    flex-grow: 1;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.1rem solid rgba(128, 128, 128, 0.2);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: 0.2s all;
+    animation-name: popupCard;
+    animation-fill-mode: backwards;
+  }
+
+  @for $i from 1 through 100 {
+    &__color:nth-of-type(#{$i}) {
+      animation-delay: math.div($i, 25) + s;
+    }
+  }
+
+  &__color:hover {
+    cursor: pointer;
+    transform: translateY(-0.5rem);
+  }
+
+  &__circle {
+    height: 50%;
+    width: 50%;
+    border-radius: 50%;
+    transition: 0.3s transform;
+
+    &--selected {
+      transform: scale(3);
+    }
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: popup;
+    animation-duration: 0.6s;
+    display: none;
+  }
+
+  &__circle--selected + &__text {
+    display: block;
+  }
+}
