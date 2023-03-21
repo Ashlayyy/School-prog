@@ -1,0 +1,40 @@
+{
+    "Cookies": {
+        "Cookie": {
+            "Name": "Default Cookies",
+            "ElementID": "js--cookie"
+        },
+        "ChocoCookie": {
+            "ElementID": "js--chocolate",
+            "MobileElementID": "js--chocolate--mobile"
+        },
+        "RedVelvetCookie": {
+            "ElementID": "js--redVelvet",
+            "MobileElementID": "js--redVelvet--mobile"
+        }
+    },
+
+    "Scores": {
+        "Default": {
+            "Name": "Default Score",
+            "Start": 184875,
+            "ElementID": "js--score"
+        }
+    },
+
+    "Advanced": {
+        "Multiplier": {
+            "Factor": 100,
+            "ElementID": "js--multiplier",
+            "MobileElementID": "js--multiplier--mobile"
+        },
+        "AutoScore": {
+            "ElementID": "js--autoscore",
+            "MobileElementID": "js--autoscore--mobile"
+        }
+    },
+
+    "Storage": {
+        "ElementID": "js--save"
+    }
+}

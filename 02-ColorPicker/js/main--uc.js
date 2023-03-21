@@ -8,7 +8,7 @@ class ColorList {
     this.htmlElement.id = this.id;
     this.render();
   }
-  render = (_) => {
+  render = _ => {
     document.querySelector("body").appendChild(this.htmlElement);
   };
 }
@@ -21,16 +21,16 @@ class HSLGenerator {
   constructor() {
     this.generateHSL();
   }
-  generateHue = (_) => {
+  generateHue = _ => {
     this.randomHue = Math.round(Math.random() * (360 - 1) + 1);
   };
-  generateSaturation = (_) => {
+  generateSaturation = _ => {
     this.randomSaturation = Math.round(Math.random() * (79 - 11) + 11) + "%";
   };
-  generateLightness = (_) => {
+  generateLightness = _ => {
     this.randomLightness = Math.round(Math.random() * (100 - 11) + 11) + "%";
   };
-  generateHSL = (_) => {
+  generateHSL = _ => {
     this.generateHue();
     this.generateSaturation();
     this.generateLightness();
@@ -61,12 +61,12 @@ class ColorCard {
     this.htmlElement.onclick = this.onHTMLElementClick;
     this.render();
   }
-  render = (_) => {
+  render = _ => {
     this.htmlElement.appendChild(this.circle);
     this.htmlElement.appendChild(this.text);
     this.addToList.appendChild(this.htmlElement);
   };
-  onHTMLElementClick = (_) => {
+  onHTMLElementClick = _ => {
     this.circle.classList.toggle("colors__circle--selected");
     if (this.circle.classList.contains("colors__circle--selected")) {
       document.title = this.color;
@@ -85,7 +85,7 @@ class App {
     this.HSLGenerator = new HSLGenerator();
     this.generateColorCards();
   }
-  generateColorCards = (_) => {
+  generateColorCards = _ => {
     for (let i = 1; i < 101; i++) {
       new ColorCard(
         i,
