@@ -1,0 +1,86 @@
+{
+  "Bankrekening": [
+    {
+      "name": "Neo",
+      "amount": 10,
+      "logo": "house"
+    },
+    {
+      "name": "Jeroen",
+      "amount": 100,
+      "logo": "house"
+    },
+    {
+      "name": "Dion",
+      "amount": -100,
+      "logo": "house"
+    },
+    {
+      "name": "Uday",
+      "amount": -20,
+      "logo": "house"
+    },
+    {
+      "name": "Jeroen",
+      "amount": 100,
+      "logo": "house"
+    },
+    {
+      "name": "Jeroen",
+      "amount": 100,
+      "logo": "house"
+    },
+    {
+      "name": "Jeroen",
+      "amount": 100,
+      "logo": "house"
+    },
+    {
+      "name": "Neo",
+      "amount": 10,
+      "logo": "house"
+    },
+    {
+      "name": "Jeroen",
+      "amount": 100,
+      "logo": "house"
+    },
+    {
+      "name": "Dion",
+      "amount": -100,
+      "logo": "house"
+    },
+    {
+      "name": "Uday",
+      "amount": -20,
+      "logo": "house"
+    },
+    {
+      "name": "Jeroen",
+      "amount": 100,
+      "logo": "house"
+    },
+    {
+      "name": "Jeroen",
+      "amount": 100,
+      "logo": "house"
+    },
+    {
+      "name": "Jeroen",
+      "amount": 100,
+      "logo": "house"
+    }
+  ],
+
+  "ZZP-Rekening": [{
+      "name": "Bedrijf ABC",
+      "amount": 10000,
+      "logo": "house"
+    },
+    {
+      "name": "Bedrijf DEF",
+      "amount": 500,
+      "logo": "house"
+    }
+  ]
+}

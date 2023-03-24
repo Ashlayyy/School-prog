@@ -17,7 +17,7 @@
     "Scores": {
         "Default": {
             "Name": "Default Score",
-            "Start": 184875,
+            "Start": 0,
             "ElementID": "js--score"
         }
     },

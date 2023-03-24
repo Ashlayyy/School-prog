@@ -1,0 +1,12 @@
+//Base and reset
+@use './abstracts/reset';
+@use './base';
+
+//Components
+@use './components/avatar/avatar.scss';
+@use './components/banky/banky.scss';
+@use './components/header/header.scss';
+@use './components/scrollbar/scrollbar.scss';
+
+//Mediaqueries
+@use './abstracts/mediaqueries';
