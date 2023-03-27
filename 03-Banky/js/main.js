@@ -39,7 +39,7 @@ class Header {
         this.logoIElement = document.createElement("i");
         this.logoIElement.classList = "fa-solid fa-money-bill-transfer";
 
-        this.logoHeadingElement = document.createElement("h1");
+        this.logoHeadingElement = document.createElement("h2");
         this.logoHeadingElement.classList = "header__banky";
         this.logoHeadingElement.innerText = 'Banky';
 
