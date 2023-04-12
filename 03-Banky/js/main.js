@@ -257,9 +257,8 @@ class App {
     getDataFromApi;
 
     constructor () {
-        this.bankyMain = new BankyMain('body');
         this.bankyHeader = new Header('body');
-
+        this.bankyMain = new BankyMain('body');
         this.getDataFromApi = new GetDataFromApi('./data/transactions.json');
         this.getDataFromApi.getData().then((data)=>{
             this.bankyMain.makeTransactionsFromData(data);
