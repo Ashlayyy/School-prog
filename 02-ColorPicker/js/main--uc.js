@@ -85,6 +85,7 @@ class App {
     this.HSLGenerator = new HSLGenerator();
     this.generateColorCards();
   }
+  
   generateColorCards = _ => {
     for (let i = 1; i < 101; i++) {
       new ColorCard(
