@@ -58,7 +58,7 @@ class Filter {
 
     randomFromResult = () => {
         let randomNumber = Math.floor(Math.random() * this.results.length);
-        console.log(this.results[randomNumber]);
+        return this.results[randomNumber];
     }
 }
 
@@ -66,6 +66,7 @@ class App {
     Api = undefined;
     filter = undefined;
     urlScraper = undefined;
+    body;
 
     constructor() {
         this.Api = new Api();
@@ -75,10 +76,22 @@ class App {
         this.urlScraper.getDataFromUrl();
         this.Api.getData().then(() => {
             this.filter.filter(this.urlScraper.platform, this.Api.data)
-            let randomResult = this.filter.randomFromResult();
-            const articleToRender = document.createElement('article');
+            this.randomResult = this.filter.randomFromResult();
+
+            this.body = document.getElementsByTagName('body')[0];
+            this.articleToRender = document.createElement('article');
+            this.headingToRender = document.createElement('h1');
+
+            this.headingToRender.innerText = this.randomResult.titel;
             
+            this.render();
         });
+    }
+    
+    render = () => {
+        this.body.appendChild(this.articleToRender);
+        this.articleToRender.appendChild(this.headingToRender);
+
     }
 }
 
