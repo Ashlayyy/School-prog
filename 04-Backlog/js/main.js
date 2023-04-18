@@ -40,8 +40,8 @@ class PrettyPlatform {
     }
 
     removeWhiteSpace = () => {
-        this.platform = this.platform.replace(' ', '');
-        this.platform = this.platform.replace('%20', '')
+        this.platform = this.platform.replaceAll(' ', '');
+        this.platform = this.platform.replaceAll('%20', '')
     }
 }
 
@@ -54,7 +54,6 @@ class Filter {
                 this.results.push(data[i]);
             }
         }
-        this.randomFromResult(this.results);
     }
 
     randomFromResult = () => {
@@ -76,6 +75,9 @@ class App {
         this.urlScraper.getDataFromUrl();
         this.Api.getData().then(() => {
             this.filter.filter(this.urlScraper.platform, this.Api.data)
+            let randomResult = this.filter.randomFromResult();
+            const articleToRender = document.createElement('article');
+            
         });
     }
 }
