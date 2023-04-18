@@ -1,0 +1,44 @@
+{
+    "games": [
+        {
+            "titel": "Death Stranding",
+            "platform": "PS5"
+        }, 
+        {
+            "titel": "The Last of Us part One",
+            "platform": "PS5"
+        }, 
+        {
+            "titel": "Halo",
+            "platform": "PC"
+        },
+        {
+            "titel": "Euro Truck Simulator 2",
+            "platform": "PC"
+        },
+        {
+            "titel": "Nioh",
+            "platform": "PS4"
+        },
+        {
+            "titel": "Hogwarts Legacy",
+            "platform": "PS4"
+        },
+        {
+            "titel": "Call of Duty",
+            "platform": "PS4"
+        },
+        {
+            "titel": "Super Dragon Ball Heroes",
+            "platform": "NINTENDOSWITCH"
+        },
+        {
+            "titel": "Mario Kart 8",
+            "platform": "NINTENDOSWITCH"
+        },
+        {
+            "titel": "Animal Crossing",
+            "platform": "NINTENDOSWITCH"
+        }
+    ]
+}
