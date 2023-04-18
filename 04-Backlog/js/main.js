@@ -82,6 +82,8 @@ class App {
             this.articleToRender = document.createElement('article');
             this.headingToRender = document.createElement('h1');
 
+            this.articleToRender.classList = 'card';
+            this.headingToRender.classList = 'card__heading';
             this.headingToRender.innerText = this.randomResult.titel;
             
             this.render();
