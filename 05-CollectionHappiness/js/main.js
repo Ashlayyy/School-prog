@@ -32,20 +32,37 @@ class RightPanel {
 
 class GetData {
     url = undefined;
+    data = undefined;
 
-    constructor () {
+    constructor (url) {
+        this.url = url;
+    }
 
+    fetchData = async () => {
+        this.data = await (await fetch(this.url)).json();
     }
 }
 
 class App {
+    //Undefined variables
     Header = undefined;
     Footer = undefined;
     LeftPanel = undefined;
     RightPanel = undefined;
     GetData = undefined;
 
-    constructor() {
+    //Defined Variables
+    url = 'data/data.json';
 
+    constructor() {
+        this.Header = new Header();
+        this.Footer = new Footer();
+        this.LeftPanel = new LeftPanel();
+        this.RightPanel = new RightPanel();
+        this.GetData = new GetData(this.url);
+
+        this.GetData.fetchData();
     }
 }
+
+const app = new App();
