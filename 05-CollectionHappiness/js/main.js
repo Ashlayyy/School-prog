@@ -27,8 +27,25 @@ class Header {
 }
 
 class Footer {
-    constructor() {
+    footerElement = undefined;
+    textElement = undefined;
+    placeToRender = undefined;
 
+    constructor(placeToRender) {
+        this.placeToRender = placeToRender;
+        this.footerElement = document.createElement('footer');
+        this.textElement = document.createElement('h6');
+
+        this.footerElement.classList = 'footer';
+        this.textElement.classList = 'footer__text';
+        this.textElement.innerText = 'Gemaakt door - Ashlay Steur SD2C MediaCollege'
+
+        this.render();
+    }
+
+    render = () => {
+        this.placeToRender.appendChild(this.footerElement);
+        this.footerElement.appendChild(this.textElement);
     }
 }
 
@@ -81,11 +98,11 @@ class App {
     constructor() {
         this.placeToRender = document.getElementsByTagName('body')[0];
 
+        this.GetData = new GetData(this.url);
         this.Header = new Header(this.placeToRender);
-        this.Footer = new Footer(this.placeToRender);
         this.LeftPanel = new LeftPanel(this.placeToRender);
         this.RightPanel = new RightPanel(this.placeToRender);
-        this.GetData = new GetData(this.url);
+        this.Footer = new Footer(this.placeToRender);
 
         this.GetData.fetchData();
     }
