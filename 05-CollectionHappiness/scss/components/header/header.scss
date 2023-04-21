@@ -1,0 +1,24 @@
+@use '../../abstracts/colors';
+@use '../../abstracts/animations';
+@use '../../abstracts/mixins';
+
+.header {
+    @include mixins.flexCenter;
+    width: 100%;
+    height: min-content;
+    gap: 5rem;
+
+    &__logo {
+        padding: 2.5rem;
+        border: 0.2rem solid black;
+        border-radius: 50%;
+        color: map-get(colors.$baseColors, 'black');
+    }
+
+    &__logoText {
+        font-size: 95%;
+        font-weight: 500;
+        line-height: 0.1rem;
+        color: map-get(colors.$baseColors, 'black');
+    }
+}
