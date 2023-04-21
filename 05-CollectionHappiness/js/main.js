@@ -12,7 +12,7 @@ class Header {
         this.logoTextElement = document.createElement('h2');
 
         this.headerElement.classList = 'header';
-        this.logoElement.classList = 'header__logo fa-sharp fa-regular fa-face-smile';
+        this.logoElement.classList = 'header__logo fa-sharp fa-regular fa-face-smile fa-2x';
         this.logoTextElement.classList = 'header__logoText';
         this.logoTextElement.innerText = 'Collection Of Happiness';
 

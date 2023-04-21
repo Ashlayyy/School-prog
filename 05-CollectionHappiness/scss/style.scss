@@ -3,7 +3,12 @@
 @use './base';
 
 //Components
-
+@use './components/header/header';
+@use './components/card/card';
+@use './components/detailCard/detailCard';
+@use './components/leftPanel/leftPanel';
+@use './components/rightPanel/rightPanel';
+@use './components/footer/footer';
 
 //Mediaqueries
 @use './abstracts/mediaqueries';
