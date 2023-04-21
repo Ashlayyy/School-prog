@@ -49,23 +49,168 @@ class Footer {
     }
 }
 
-class LeftPanel {
-    constructor() {
+class Card {
+    constructor (placeToRender, data, number, LeftPanel) {
+        this.placeToRender = placeToRender;
+        this.data = data;
+        this.number = number;
+        this.LeftPanel = LeftPanel;
 
+        this.wrapElement = document.createElement('section');
+        this.backImageElement = document.createElement('div');
+        this.dateElement = document.createElement('h4');
+        this.titleElement = document.createElement('h4');
+
+        this.wrapElement.classList = 'card';
+        this.backImageElement.classList = 'card__backgroundImage';
+        this.dateElement.classList = 'card__date';
+        this.titleElement.classList = 'card__title';
+
+        this.dateElement.innerText = this.data['date (dd-mm-yyyy)'];
+        this.titleElement.innerText = this.data['title'];
+        this.backImageElement.style.backgroundImage = `/img/picture-${number}.webp`;
+        this.wrapElement.id = this.LeftPanel.podCasts[number];
+        this.dateElement.id = this.LeftPanel.podCasts[number];
+        this.titleElement.id = this.LeftPanel.podCasts[number];
+
+        this.render();
+        this.setClickListener();
+    }
+    
+    render = () => {
+        this.placeToRender.appendChild(this.wrapElement);
+        this.wrapElement.appendChild(this.backImageElement);
+        this.backImageElement.appendChild(this.dateElement);
+        this.backImageElement.appendChild(this.titleElement);
+    }
+
+    setClickListener = () => {
+        this.wrapElement.addEventListener('click', (event) => {
+            this.LeftPanel.acceptCallFromCard(event);
+        })
+    }
+}
+
+class LeftPanel {
+    sectionElement = undefined;
+    placeToRender = undefined;
+    data = undefined;
+    app = undefined;
+    podCasts = undefined;
+
+    constructor(placeToRender, data, app, podCasts) {
+        this.placeToRender = placeToRender;
+        this.data = data;
+        this.app = app;
+        this.podCasts = podCasts;
+
+        this.sectionElement = document.createElement('section');
+        this.sectionElement.classList = 'LeftPanel';
+
+        for(let i = 0; i < 4; i++) {
+            this.sectionElement.appendChild(new Card(this.sectionElement, this.data[podCasts[i]], i, this).wrapElement);
+        }
+
+        this.render();
+    }
+
+    acceptCallFromCard = (event) => {   
+        this.app.handleCallFromLeft(event);
+    }
+
+    render = () => {
+        this.placeToRender.appendChild(this.sectionElement);
     }
 }
 
 class DetailCard {
-    constructor() {
+    wrapElement = undefined;
+    backImageElement = undefined;
+    dateElement = undefined;
+    titleElement = undefined;
+    summaryElement = undefined;
+    buttonWrapElement = undefined;
+    buttonElement = undefined;
+    audioElement = undefined;
 
+    placeToRender = undefined;
+    data = undefined;
+
+    constructor(placeToRender, data) {
+        this.placeToRender = placeToRender;
+        this.data = data;
+
+        this.wrapElement = document.createElement('section');
+        this.backImageElement = document.createElement('div');
+        this.dateElement = document.createElement('h4');
+        this.titleElement = document.createElement('h4');
+        this.summaryElement = document.createElement('p');
+        this.buttonWrapElement = document.createElement('div');
+        this.buttonElement = document.createElement('button');
+        this.audioElement = document.createElement('audio');
+
+        this.setClasses();
+        this.setSpecialAtributes();
+        this.render();
+    }
+
+    setClasses = () => {
+        this.wrapElement.classList = 'detail';
+        this.backImageElement.classList = 'detail__backgroundImage';
+        this.dateElement.classList = 'detail__date';
+        this.titleElement.classList = 'detail__title';
+        this.summaryElement.classList = 'detail__summary';
+        this.buttonWrapElement.classList = 'detail__wrap';
+        this.buttonElement.classList = 'detail__button';
+        this.audioElement.classList = 'detail__audio';
+    }
+
+    setSpecialAtributes = () => {
+        this.dateElement.innerText = this.data['date (dd-mm-yyyy)'];
+        this.titleElement.innerText = this.data['title'];
+        this.summaryElement.innerText = this.data['summary'];
+        this.buttonElement.href = this.data['url'];
+        this.audioElement.src = this.data['audio'];
+    }
+
+    render = () => {
+        this.placeToRender.appendChild(this.wrapElement);
+        this.wrapElement.appendChild(this.backImageElement);
+        this.backImageElement.appendChild(this.dateElement);
+        this.backImageElement.appendChild(this.titleElement);
+        this.wrapElement.appendChild(this.summaryElement);
+        this.wrapElement.appendChild(this.buttonWrapElement);
+        this.buttonWrapElement.appendChild(this.buttonElement);
+        this.buttonWrapElement.appendChild(this.audioElement);
     }
 }
 
 class RightPanel {
     DetailCard = undefined;
+    placeToRender = undefined;
+    data = undefined;
+    numArray = undefined;
     
-    constructor() {
+    constructor(placeToRender, data, numArray) {
+        this.placeToRender = placeToRender;
+        this.data = data;
+        this.numArray = numArray;
 
+        this.sectionElement = document.createElement('section');
+        this.sectionElement.classList = 'RightPanel';
+
+        this.DetailCard = new DetailCard(this.sectionElement, this.data[this.numArray[0]]);
+
+        this.render();
+    }
+
+    acceptCallFromApp = (data) => {
+        this.sectionElement.innerHTML = '';
+        this.DetailCard = new DetailCard(this.sectionElement, data);
+    }
+
+    render = () => {
+        this.placeToRender.appendChild(this.sectionElement);
     }
 }
 
@@ -78,7 +223,43 @@ class GetData {
     }
 
     fetchData = async () => {
-        this.data = await (await fetch(this.url)).json();
+        this.data = await fetch(this.url);
+        this.data = await this.data.json().then(data => {
+            return data
+        });
+        return this.data;
+    }
+}
+
+class RandomNumber {
+    array;
+
+    constructor(array) {
+        this.array = array;
+
+        this.i = this.array.length;
+        this.j = 0;
+        this.temp = [];
+        while (this.i--) {
+            this.j = Math.floor(Math.random() * (this.i + 1));
+            this.temp = this.array[this.i];
+            this.array[this.i] = this.array[this.j];
+            this.array[this.j] = this.temp;
+        }
+    }
+}
+
+class RandomEpisodes {
+    array = [];
+    randomNum = [];
+
+    constructor () {
+        this.randomNum = new RandomNumber([0, 1, 2, 3, 4, 5, 6]).array;
+
+        for(let i = 0; i < 4; i++) {
+            this.array.push(this.randomNum[i]);
+        }
+        return this.array;
     }
 }
 
@@ -89,8 +270,9 @@ class App {
     LeftPanel = undefined;
     RightPanel = undefined;
     GetData = undefined;
-
+    RandomEpisodes = undefined;
     placeToRender = undefined;
+    data = undefined;
 
     //Defined Variables
     url = 'data/data.json';
@@ -99,13 +281,19 @@ class App {
         this.placeToRender = document.getElementsByTagName('body')[0];
 
         this.GetData = new GetData(this.url);
-        this.Header = new Header(this.placeToRender);
-        this.LeftPanel = new LeftPanel(this.placeToRender);
-        this.RightPanel = new RightPanel(this.placeToRender);
-        this.Footer = new Footer(this.placeToRender);
-
-        this.GetData.fetchData();
+        this.GetData.fetchData().then((data) => {
+            this.data = data.episodes;
+            this.RandomEpisodes = new RandomEpisodes(this.data)
+            this.Header = new Header(this.placeToRender);
+            this.LeftPanel = new LeftPanel(this.placeToRender, this.data, this, this.RandomEpisodes);
+            this.RightPanel = new RightPanel(this.placeToRender,this.data, this.RandomEpisodes);
+            this.Footer = new Footer(this.placeToRender);
+        });
     }
+
+    handleCallFromLeft = (event) => [
+        this.RightPanel.acceptCallFromApp(this.data[event.target.id])
+    ]
 }
 
 const app = new App();
