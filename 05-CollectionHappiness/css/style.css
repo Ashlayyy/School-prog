@@ -15,6 +15,12 @@ body {
 body {
   font-family: Ubuntu, sans-serif, serif;
   padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F9B208;
+  background: linear-gradient(to left bottom, #FC5404, #F9B208);
 }
 
 .header {
@@ -38,6 +44,29 @@ body {
   color: #000;
 }
 
+.card {
+  width: 50ch;
+  padding: 1rem;
+  font-size: 70%;
+  position: relative;
+  text-align: center;
+  color: #eee;
+}
+.card__image {
+  width: 50ch;
+  aspect-ratio: 19/10;
+}
+.card__date {
+  position: absolute;
+  top: 2vw;
+  right: 2vw;
+}
+.card__title {
+  position: absolute;
+  bottom: 2vw;
+  left: 2vw;
+}
+
 .detail {
   display: flex;
   justify-content: center;
@@ -51,13 +80,56 @@ body {
   color: #eee;
 }
 .detail__background {
-  width: 55ch;
+  width: 45ch;
+  aspect-ratio: 19/6;
+}
+.detail__date {
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+}
+.detail__title {
+  position: absolute;
+  bottom: 1vw;
+  left: 1vw;
 }
 .detail__summary {
-  width: 50ch;
+  width: 40ch;
+  padding: 2.5rem 0;
 }
 .detail__wrap {
   width: 100%;
+}
+.detail__button {
+  border: none;
+  color: #eee;
+  padding: 1.6rem 3.2rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.6rem;
+  margin: 0.4rem 0.2rem;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: rgba(85, 85, 85, 0.6);
+  color: #eee;
+  border: 0.2rem solid #555555;
+  border-radius: 10%;
+}
+.detail__button:hover {
+  background-color: #555555;
+  color: #eee;
+}
+
+.LeftPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+}
+
+.panel__devider {
+  padding: 1rem;
 }
 
 .main {
@@ -74,12 +146,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translate(-50%);
+  padding-top: 5vh;
   font-weight: 300;
   color: #000;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

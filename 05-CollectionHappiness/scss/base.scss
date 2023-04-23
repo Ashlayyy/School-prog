@@ -1,4 +1,11 @@
+@use './abstracts/mixins';
+@use './abstracts/colors';
+
 body {
     font-family: Ubuntu, sans-serif, serif;
     padding: 2rem;
+    @include mixins.flexCenter;
+    flex-direction: column;
+    background-color: #F9B208;
+    background: linear-gradient(to left bottom, map-get(colors.$baseColors, 'mainColor'), map-get(colors.$baseColors, 'secondaryColor'));
 }

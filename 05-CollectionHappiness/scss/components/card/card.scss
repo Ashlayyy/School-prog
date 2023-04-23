@@ -3,5 +3,27 @@
 @use '../../abstracts/mixins';
 
 .card {
-    
+    width: 50ch;
+    padding: 1rem;
+    font-size: 70%;
+    position: relative;
+    text-align: center;
+    color: map-get(colors.$baseColors, 'white');
+
+    &__image {
+        width: 50ch;
+        aspect-ratio: 19/10;
+    }
+
+    &__date {
+        position: absolute;
+        top: 2vw;
+        right: 2vw;
+    }
+
+    &__title {
+        position: absolute;
+        bottom: 2vw;
+        left: 2vw;
+    }
 }

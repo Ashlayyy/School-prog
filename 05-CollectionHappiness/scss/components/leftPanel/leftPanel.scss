@@ -3,5 +3,10 @@
 @use '../../abstracts/mixins';
 
 .LeftPanel {
-    
+    @include mixins.flexCenter;
+    width: 75%;
+}
+
+.panel__devider {
+    padding: 1rem;
 }

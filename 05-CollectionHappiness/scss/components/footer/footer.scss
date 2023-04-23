@@ -4,10 +4,8 @@
 
 .footer {
     @include mixins.flexCenter;
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translate(-50%);
+    padding-top: 5vh;
     font-weight: 300;
     color: map-get(colors.$baseColors, 'black');
+    text-align: center;
 }

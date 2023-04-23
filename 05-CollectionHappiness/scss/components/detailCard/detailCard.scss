@@ -3,5 +3,61 @@
 @use '../../abstracts/mixins';
 
 .detail {
-    
+    @include mixins.flexCenter;
+    flex-direction: column;
+    height: 100%;
+
+    &__devider {
+        position: relative;
+        text-align: center;
+        color: map-get(colors.$baseColors, 'white');
+    }
+
+    &__background {
+        width: 45ch;
+        aspect-ratio: 19/6;
+    }
+
+    &__date {
+        position: absolute;
+        top: 1vw;
+        right: 1vw;
+    }
+
+    &__title {
+        position: absolute;
+        bottom: 1vw;
+        left: 1vw;
+    }
+
+    &__summary {
+        width: 40ch;
+        padding: 2.5rem 0;
+    }
+
+    &__wrap {
+        width: 100%;
+    }
+
+    &__button {
+        border: none;
+        color: map-get(colors.$baseColors, 'white');
+        padding: 1.6rem 3.2rem;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1.6rem;
+        margin: 0.4rem 0.2rem;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        background-color: map-get(colors.$baseColors, 'secondButtonColor');
+        color: map-get(colors.$baseColors, 'white');
+        border: 0.2rem solid map-get(colors.$baseColors, 'buttonBorder');
+        border-radius: 10%;
+
+        &:hover {
+            background-color: map-get(colors.$baseColors, 'buttonBorder');
+            color: map-get(colors.$baseColors, 'white');
+        }
+    }
 }

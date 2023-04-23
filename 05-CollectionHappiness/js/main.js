@@ -50,43 +50,43 @@ class Footer {
 }
 
 class Card {
-    constructor (placeToRender, data, number, LeftPanel) {
+    constructor(placeToRender, data, number, LeftPanel) {
         this.placeToRender = placeToRender;
         this.data = data;
         this.number = number;
         this.LeftPanel = LeftPanel;
 
-        this.wrapElement = document.createElement('section');
-        this.backImageElement = document.createElement('div');
+        this.wrapElement = document.createElement('div');
+        this.backImageElement = document.createElement('img');
         this.dateElement = document.createElement('h4');
         this.titleElement = document.createElement('h4');
 
         this.wrapElement.classList = 'card';
-        this.backImageElement.classList = 'card__backgroundImage';
+        this.backImageElement.classList = 'card__image';
         this.dateElement.classList = 'card__date';
         this.titleElement.classList = 'card__title';
 
         this.dateElement.innerText = this.data['date (dd-mm-yyyy)'];
         this.titleElement.innerText = this.data['title'];
-        this.backImageElement.style.backgroundImage = `/img/picture-${number}.webp`;
+        this.backImageElement.src = `./img/picture-${this.LeftPanel.podCasts[number]}.webp`;
         this.wrapElement.id = this.LeftPanel.podCasts[number];
         this.dateElement.id = this.LeftPanel.podCasts[number];
         this.titleElement.id = this.LeftPanel.podCasts[number];
 
-        this.render();
         this.setClickListener();
+        this.render();
     }
-    
+
     render = () => {
         this.placeToRender.appendChild(this.wrapElement);
         this.wrapElement.appendChild(this.backImageElement);
-        this.backImageElement.appendChild(this.dateElement);
-        this.backImageElement.appendChild(this.titleElement);
+        this.wrapElement.appendChild(this.dateElement);
+        this.wrapElement.appendChild(this.titleElement);
     }
 
     setClickListener = () => {
-        this.wrapElement.addEventListener('click', (event) => {
-            this.LeftPanel.acceptCallFromCard(event);
+        this.wrapElement.addEventListener('click', () => {
+            this.LeftPanel.acceptCallFromCard(this.wrapElement.id);
         })
     }
 }
@@ -107,15 +107,20 @@ class LeftPanel {
         this.sectionElement = document.createElement('section');
         this.sectionElement.classList = 'LeftPanel';
 
-        for(let i = 0; i < 4; i++) {
-            this.sectionElement.appendChild(new Card(this.sectionElement, this.data[podCasts[i]], i, this).wrapElement);
+        for (let i = 0; i < 4; i++) {
+            if (i == 0 || i == 2) {
+                this.tempElement = document.createElement('div');
+                this.tempElement.classList = 'panel__devider';
+                this.sectionElement.appendChild(this.tempElement);
+            }
+            this.tempElement.appendChild(new Card(this.sectionElement, this.data[podCasts[i]], i, this).wrapElement)
         }
 
         this.render();
     }
 
-    acceptCallFromCard = (event) => {   
-        this.app.handleCallFromLeft(event);
+    acceptCallFromCard = (id) => {
+        this.app.handleCallFromLeft(id);
     }
 
     render = () => {
@@ -155,6 +160,7 @@ class DetailCard {
 
         this.setClasses();
         this.setSpecialAtributes();
+        this.addEventListener();
         this.render();
     }
 
@@ -176,9 +182,16 @@ class DetailCard {
         this.dateElement.innerText = this.data['date (dd-mm-yyyy)'];
         this.titleElement.innerText = this.data['title'];
         this.summaryElement.innerText = this.data['summary'];
-        this.buttonElement.href = this.data['url'];
         this.buttonElement.innerText = 'Button naar website';
+        this.audioElement.controls = 'controls';
         this.audioElement.src = this.data['audio'];
+        this.audioElement.type = 'audio/mpeg';
+    }
+
+    addEventListener = () => {
+        this.buttonElement.addEventListener('click', () => {
+            location.href = this.data['url'];
+        })
     }
 
     render = () => {
@@ -200,7 +213,7 @@ class RightPanel {
     placeToRender = undefined;
     data = undefined;
     numArray = undefined;
-    
+
     constructor(placeToRender, data, numArray) {
         this.placeToRender = placeToRender;
         this.data = data;
@@ -228,7 +241,7 @@ class GetData {
     url = undefined;
     data = undefined;
 
-    constructor (url) {
+    constructor(url) {
         this.url = url;
     }
 
@@ -263,10 +276,10 @@ class RandomEpisodes {
     array = [];
     randomNum = [];
 
-    constructor () {
+    constructor() {
         this.randomNum = new RandomNumber([0, 1, 2, 3, 4, 5, 6]).array;
 
-        for(let i = 0; i < 4; i++) {
+        for (let i = 0; i < 4; i++) {
             this.array.push(this.randomNum[i]);
         }
         return this.array;
@@ -299,13 +312,13 @@ class App {
             this.Header = new Header(this.placeToRender);
             this.render();
             this.LeftPanel = new LeftPanel(this.mainElement, this.data, this, this.RandomEpisodes);
-            this.RightPanel = new RightPanel(this.mainElement,this.data, this.RandomEpisodes);
+            this.RightPanel = new RightPanel(this.mainElement, this.data, this.RandomEpisodes);
             this.Footer = new Footer(this.placeToRender);
         });
     }
 
-    handleCallFromLeft = (event) => {
-        this.RightPanel.acceptCallFromApp(this.data[event.target.id], event.target.id)
+    handleCallFromLeft = (id) => {
+        this.RightPanel.acceptCallFromApp(this.data[id], id)
     }
 
     render = () => {
