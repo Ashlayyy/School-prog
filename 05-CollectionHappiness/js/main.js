@@ -135,13 +135,17 @@ class DetailCard {
 
     placeToRender = undefined;
     data = undefined;
+    number = undefined;
 
-    constructor(placeToRender, data) {
+    constructor(placeToRender, data, number) {
         this.placeToRender = placeToRender;
         this.data = data;
+        this.number = number;
 
         this.wrapElement = document.createElement('section');
+        this.wrapper = document.createElement('div');
         this.backImageElement = document.createElement('div');
+        this.imageElement = document.createElement('img');
         this.dateElement = document.createElement('h4');
         this.titleElement = document.createElement('h4');
         this.summaryElement = document.createElement('p');
@@ -156,7 +160,9 @@ class DetailCard {
 
     setClasses = () => {
         this.wrapElement.classList = 'detail';
-        this.backImageElement.classList = 'detail__backgroundImage';
+        this.wrapper.classList = 'detail__wrapper';
+        this.backImageElement.classList = 'detail__devider';
+        this.imageElement.classList = 'detail__background';
         this.dateElement.classList = 'detail__date';
         this.titleElement.classList = 'detail__title';
         this.summaryElement.classList = 'detail__summary';
@@ -166,20 +172,24 @@ class DetailCard {
     }
 
     setSpecialAtributes = () => {
+        this.imageElement.src = `./img/picture-${this.number}.webp`;
         this.dateElement.innerText = this.data['date (dd-mm-yyyy)'];
         this.titleElement.innerText = this.data['title'];
         this.summaryElement.innerText = this.data['summary'];
         this.buttonElement.href = this.data['url'];
+        this.buttonElement.innerText = 'Button naar website';
         this.audioElement.src = this.data['audio'];
     }
 
     render = () => {
         this.placeToRender.appendChild(this.wrapElement);
-        this.wrapElement.appendChild(this.backImageElement);
+        this.wrapElement.appendChild(this.wrapper);
+        this.wrapper.appendChild(this.backImageElement);
+        this.backImageElement.appendChild(this.imageElement);
         this.backImageElement.appendChild(this.dateElement);
         this.backImageElement.appendChild(this.titleElement);
-        this.wrapElement.appendChild(this.summaryElement);
-        this.wrapElement.appendChild(this.buttonWrapElement);
+        this.wrapper.appendChild(this.summaryElement);
+        this.wrapper.appendChild(this.buttonWrapElement);
         this.buttonWrapElement.appendChild(this.buttonElement);
         this.buttonWrapElement.appendChild(this.audioElement);
     }
@@ -199,14 +209,14 @@ class RightPanel {
         this.sectionElement = document.createElement('section');
         this.sectionElement.classList = 'RightPanel';
 
-        this.DetailCard = new DetailCard(this.sectionElement, this.data[this.numArray[0]]);
+        this.DetailCard = new DetailCard(this.sectionElement, this.data[this.numArray[0]], this.numArray[0]);
 
         this.render();
     }
 
-    acceptCallFromApp = (data) => {
+    acceptCallFromApp = (data, number) => {
         this.sectionElement.innerHTML = '';
-        this.DetailCard = new DetailCard(this.sectionElement, data);
+        this.DetailCard = new DetailCard(this.sectionElement, data, number);
     }
 
     render = () => {
@@ -279,21 +289,28 @@ class App {
 
     constructor() {
         this.placeToRender = document.getElementsByTagName('body')[0];
+        this.mainElement = document.createElement('main');
+        this.mainElement.classList = 'main';
 
         this.GetData = new GetData(this.url);
         this.GetData.fetchData().then((data) => {
             this.data = data.episodes;
             this.RandomEpisodes = new RandomEpisodes(this.data)
             this.Header = new Header(this.placeToRender);
-            this.LeftPanel = new LeftPanel(this.placeToRender, this.data, this, this.RandomEpisodes);
-            this.RightPanel = new RightPanel(this.placeToRender,this.data, this.RandomEpisodes);
+            this.render();
+            this.LeftPanel = new LeftPanel(this.mainElement, this.data, this, this.RandomEpisodes);
+            this.RightPanel = new RightPanel(this.mainElement,this.data, this.RandomEpisodes);
             this.Footer = new Footer(this.placeToRender);
         });
     }
 
-    handleCallFromLeft = (event) => [
-        this.RightPanel.acceptCallFromApp(this.data[event.target.id])
-    ]
+    handleCallFromLeft = (event) => {
+        this.RightPanel.acceptCallFromApp(this.data[event.target.id], event.target.id)
+    }
+
+    render = () => {
+        this.placeToRender.appendChild(this.mainElement);
+    }
 }
 
 const app = new App();
