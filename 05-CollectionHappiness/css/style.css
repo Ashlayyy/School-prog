@@ -38,6 +38,38 @@ body {
   color: #000;
 }
 
+.detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+.detail__devider {
+  position: relative;
+  text-align: center;
+  color: #eee;
+}
+.detail__background {
+  width: 55ch;
+}
+.detail__summary {
+  width: 50ch;
+}
+.detail__wrap {
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 5rem;
+  width: 100%;
+  height: 100%;
+}
+
 .footer {
   display: flex;
   justify-content: center;

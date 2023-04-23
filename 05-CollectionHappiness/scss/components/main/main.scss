@@ -1,0 +1,11 @@
+@use '../../abstracts/colors';
+@use '../../abstracts/animations';
+@use '../../abstracts/mixins';
+
+.main {
+    @include mixins.flexCenter;
+    flex-direction: row;
+    gap: 5rem;
+    width: 100%;
+    height: 100%;
+}
