@@ -8,4 +8,5 @@ body {
     flex-direction: column;
     background-color: #F9B208;
     background: linear-gradient(to left bottom, map-get(colors.$baseColors, 'mainColor'), map-get(colors.$baseColors, 'secondaryColor'));
+    @include mixins.popUp;
 }

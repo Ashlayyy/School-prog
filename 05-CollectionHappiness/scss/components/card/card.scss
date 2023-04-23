@@ -9,6 +9,7 @@
     position: relative;
     text-align: center;
     color: map-get(colors.$baseColors, 'white');
+    @include mixins.popUp;
 
     &__image {
         width: 50ch;

@@ -6,6 +6,7 @@
     @include mixins.flexCenter;
     flex-direction: column;
     height: 100%;
+    @include mixins.popUp;
 
     &__devider {
         position: relative;
@@ -37,6 +38,8 @@
 
     &__wrap {
         width: 100%;
+        @include mixins.flexCenter;
+        gap: 1rem;
     }
 
     &__button {

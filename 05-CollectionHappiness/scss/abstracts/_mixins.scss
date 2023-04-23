@@ -1,5 +1,13 @@
+@use './animations';
+
 @mixin flexCenter {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@mixin popUp {
+    animation-name: popUp;
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
 }

@@ -1,0 +1,18 @@
+@media all and (max-width: 1400px) {
+  .main {
+    padding-top: 1rem;
+    flex-direction: column-reverse;
+  }
+}
+
+@media all and (max-width: 60rem) {
+    .LeftPanel {
+        flex-direction: column;
+    }
+
+    .detail {
+        &__wrap {
+            flex-direction: column;
+        }
+    }
+}

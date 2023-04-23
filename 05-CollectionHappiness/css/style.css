@@ -12,6 +12,16 @@ body {
   font-size: 2rem;
 }
 
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 body {
   font-family: Ubuntu, sans-serif, serif;
   padding: 2rem;
@@ -21,6 +31,9 @@ body {
   flex-direction: column;
   background-color: #F9B208;
   background: linear-gradient(to left bottom, #FC5404, #F9B208);
+  animation-name: popUp;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .header {
@@ -51,6 +64,9 @@ body {
   position: relative;
   text-align: center;
   color: #eee;
+  animation-name: popUp;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
 }
 .card__image {
   width: 50ch;
@@ -73,6 +89,9 @@ body {
   align-items: center;
   flex-direction: column;
   height: 100%;
+  animation-name: popUp;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
 }
 .detail__devider {
   position: relative;
@@ -99,6 +118,10 @@ body {
 }
 .detail__wrap {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 .detail__button {
   border: none;
@@ -150,6 +173,21 @@ body {
   font-weight: 300;
   color: #000;
   text-align: center;
+}
+
+@media all and (max-width: 1400px) {
+  .main {
+    padding-top: 1rem;
+    flex-direction: column-reverse;
+  }
+}
+@media all and (max-width: 60rem) {
+  .LeftPanel {
+    flex-direction: column;
+  }
+  .detail__wrap {
+    flex-direction: column;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
